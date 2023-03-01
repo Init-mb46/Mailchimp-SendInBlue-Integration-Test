@@ -1,0 +1,7 @@
+{
+    "Contact": {
+        "email": "email@email.com",
+        "attributes": {"SMS":"IF APPLICABLE", "FIRSTNAME":"IF APPLICABLE", "LASTNAME":"IF APPLICABLE"},
+        "list_ids": ["# of mailing list (int)"]
+    }
+}
