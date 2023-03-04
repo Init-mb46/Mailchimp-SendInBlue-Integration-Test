@@ -1,0 +1,10 @@
+{
+    "Contact": {
+        "email_address": "email",
+        "status": "subscribed or unsubscribed",
+        "merge_fields": {
+            "FNAME": "Mikaela", 
+            "LNAME": "Other fields below"
+        }
+    }
+}

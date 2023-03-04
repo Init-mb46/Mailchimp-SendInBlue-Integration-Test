@@ -1,3 +1,5 @@
+#NOTE: All api client instantiation and list ids should go in the main file, these should be given as parameters to the mailchimp and sendinblue api handler files
+
 from sib_api_v3_sdk import *
 from pprint import pprint 
 from sib_api_v3_sdk.rest import ApiException
@@ -26,8 +28,7 @@ contact = CreateContact(
 
 try:
     res = API.create_contact(contact) # creates the contact using the api and stores the response
-    pprint(res)
-
+    pprint(res) 
 except ApiException as e:
-    print("Exception when calling ContactsApi->create_contact: %s\n" % e) # prints any errors
+    print("Exception when calling ContactsApi->create_contact: %s\n" % e) # prints any errors, will tell if the contact exists already.
 
