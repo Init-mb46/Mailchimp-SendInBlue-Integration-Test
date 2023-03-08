@@ -37,18 +37,3 @@ def create_contacts(contacts: list = [], listid: int = None):
             pprint(res) 
         except ApiException as e:
             print("Exception when calling ContactsApi->create_contact: %s\n" % e) # prints any errors, will tell if the contact exists already.
-
-
-    
-
-# contact = CreateContact(
-#     email= "test2@gmail.com",
-#     attributes= {"FIRSTNAME":"James", "LASTNAME":"Zucker"},
-#     list_ids=[5] #"waiting list"
-# )
-# contact object is created, a template can be found in "SIB_CONTACT_TEMPLATE.json"
-
-# contact = UpdateContact(
-#     attributes= {"FIRSTNAME":"JAMES"}
-# ) 
-# above code can update select attributes of a contact, the update_contact() method requires an id/email parameter and the UpdateContact object
