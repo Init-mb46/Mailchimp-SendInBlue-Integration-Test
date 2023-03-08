@@ -14,21 +14,41 @@ config.api_key['api-key'] = os.getenv('SIB_API_KEY')
 API = ContactsApi(ApiClient(config))
 # The contacts api client is created
 
-contact = CreateContact(
-    email= "test2@gmail.com",
-    attributes= {"FIRSTNAME":"James", "LASTNAME":"Zucker"},
-    list_ids=[5] #"waiting list"
-)
+def create_contacts(contacts: list = [], listid: int = None): 
+    Contacts = []
+    for i in range(len(contacts)):
+        fname = ""
+        lname = ""
+
+        #NOTE: FIX TO ENABLE FIRSTNAME AND LAST NAME ADDITIONS, find send in blue import limit
+        # if (contacts[i]["merge_fields"]):
+        #     fname = contacts[i]["merge_fields"] and ["FNAME"] or ""
+        #     lname = contacts[i]["merge_fields"]["FNAME"] or ""
+
+        Contacts.append(CreateContact(
+            email= contacts[i]['email_address'],
+            attributes= {"FIRSTNAME": fname, "LASTNAME": lname},
+            list_ids=[listid] 
+        ))
+    
+    for c in Contacts:
+        try:
+            res = API.create_contact(c) # creates the contact using the api and stores the response
+            pprint(res) 
+        except ApiException as e:
+            print("Exception when calling ContactsApi->create_contact: %s\n" % e) # prints any errors, will tell if the contact exists already.
+
+
+    
+
+# contact = CreateContact(
+#     email= "test2@gmail.com",
+#     attributes= {"FIRSTNAME":"James", "LASTNAME":"Zucker"},
+#     list_ids=[5] #"waiting list"
+# )
 # contact object is created, a template can be found in "SIB_CONTACT_TEMPLATE.json"
 
 # contact = UpdateContact(
 #     attributes= {"FIRSTNAME":"JAMES"}
 # ) 
 # above code can update select attributes of a contact, the update_contact() method requires an id/email parameter and the UpdateContact object
-
-try:
-    res = API.create_contact(contact) # creates the contact using the api and stores the response
-    pprint(res) 
-except ApiException as e:
-    print("Exception when calling ContactsApi->create_contact: %s\n" % e) # prints any errors, will tell if the contact exists already.
-
